@@ -26,7 +26,7 @@ jobs:
                 path: /tmp/elephant.txt
             
             - name: Test File Exists
-              run: grep -i "elephant" /tmp/elephant.txt
+              run: grep -iR "elephant" /tmp/elephant.txt
 
     Deploy_job:
         runs-on: ubuntu-latest
