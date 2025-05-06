@@ -7,7 +7,7 @@ jobs:
           - name: Install cowsay
             run: sudo apt-get install cowsay -y
           - name: Execute Cowsay cmd
-            run: cowsay -f elephant "i am elephant ba..." >> elephant.txt
+            run: cowsay -f elephant "i am elephant ba..." >> /tmp/elephant.txt
           - name: Sleep for 30 seconds
             run: sleep 30
           - name: Upload a artifact
