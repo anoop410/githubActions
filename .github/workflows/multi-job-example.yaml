@@ -37,8 +37,12 @@ jobs:
             with:
               name: elephant-file
               path: /tmp/elephant.txt
-          
-          - name: Read File
-            run: cat /tmp/elephant.txt
+
+          - name: List Files
+            run: |
+                cd /tmp
+                ls -la
+        #   - name: Read File
+        #     run: cat /tmp/elephant.txt
             
         
