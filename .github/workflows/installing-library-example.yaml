@@ -7,6 +7,9 @@ jobs:
             - name: Checkout Repo
               uses: actions/checkout@v4.2.2
 
+            - name: make script executable
+              run: sudo chmod +x ascii-script.sh
+
             - name: Executing shell script
               run: ./ascii-script.sh
 
