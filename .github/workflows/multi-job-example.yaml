@@ -19,7 +19,7 @@ jobs:
         runs-on: ubuntu-latest
         needs: [dependency_install_job]
         steps:
-            - uses: actions/download-artifact@v4.3
+            - uses: actions/download-artifact@v4.3.0
               name: Download elephant text file from first job
               with:
                 name: elephant-file
@@ -32,7 +32,7 @@ jobs:
         runs-on: ubuntu-latest
         needs: [test_job]
         steps:
-          - uses: actions/download-artifact@v4.3
+          - uses: actions/download-artifact@v4.3.0
             name: Download elephant text file from first job
             with:
               name: elephant-file
