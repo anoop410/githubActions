@@ -1,0 +1,44 @@
+name: Multi Job Example
+on: [push]
+jobs:
+    dependency_install_job:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Install cowsay
+            run: sudo apt-get install cowsay -y
+          - name: Execute Cowsay cmd
+            run: cowsay -f cow "i am cow ba..." >> cow.txt
+          - name: Sleep for 30 seconds
+            run: sleep 30
+          - name: Upload a artifact
+            uses: actions/upload-artifact@v4.6.2
+            with:
+              name: cow-file
+              path: /tmp/cow.txt
+    test_job:
+        runs-on: ubuntu-latest
+        needs: [dependency_install_job]
+        steps:
+            - uses: actions/download-artifact@v4.3
+              name: Download cow text file from first job
+              with:
+                name: cow-file
+                path: /tmp/cow.txt
+            
+            - name: Test File Exists
+              run: grep -i "cow" /tmp/cow.txt
+
+    Deploy_job:
+        runs-on: ubuntu-latest
+        needs: [test_job]
+        steps:
+          - uses: actions/download-artifact@v4.3
+            name: Download cow text file from first job
+            with:
+              name: cow-file
+              path: /tmp/cow.txt
+          
+          - name: Read File
+            run: cat /tmp/cow.txt
+            
+        
